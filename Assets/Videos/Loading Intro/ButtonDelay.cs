@@ -5,7 +5,7 @@ using System.Collections;
 public class ShowButtonAfterDelay : MonoBehaviour
 {
     private Button button;
-    public float delaySeconds = 2f;
+    public float delaySeconds = 6f;
 
     void Start()
     {
