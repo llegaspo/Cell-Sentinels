@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Body.unity
     guid: b9617e78ea363bb4f9e94bbf0a322651
   - enabled: 1
-    path: Assets/Scenes/LungsLevel.unity
+    path: Assets/Scenes/Spleen.unity
     guid: db456980d48dd7347a6304ad841576e8
   - enabled: 1
     path: Assets/Scenes/Spleen/Spleen_Level_1.unity
