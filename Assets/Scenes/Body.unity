@@ -368,7 +368,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5882353}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1254,7 +1254,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0.751, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -755.2434, y: -473.68604}
+  m_AnchoredPosition: {x: -755.2434, y: -461}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1082862330
@@ -1278,8 +1278,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.39215687}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
@@ -1365,6 +1365,7 @@ GameObject:
   - component: {fileID: 1299198966}
   - component: {fileID: 1299198965}
   - component: {fileID: 1299198968}
+  - component: {fileID: 1299198969}
   m_Layer: 5
   m_Name: Thymus L
   m_TagString: Untagged
@@ -1379,16 +1380,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299198963}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 41.160233}
-  m_LocalScale: {x: 4.5714283, y: 4.571429, z: 4.5714307}
+  m_LocalRotation: {x: 0.006551017, y: -0, z: -0, w: 0.99997854}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalScale: {x: 2, y: 10, z: 0.55586237}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1910548577}
+  m_Children:
+  - {fileID: 1910548577}
+  m_Father: {fileID: 1431180378}
   m_LocalEulerAnglesHint: {x: 0.751, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1376, y: -174.61371}
+  m_AnchoredPosition: {x: 532.7566, y: -366.6862}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1299198965
@@ -1412,7 +1414,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5882353}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1486,6 +1488,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delaySeconds: 6
+--- !u!114 &1299198969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299198963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03886794193662e48aa377e22c596083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: Thymus_Level_1
 --- !u!1 &1310039361
 GameObject:
   m_ObjectHideFlags: 0
@@ -1621,7 +1636,7 @@ Transform:
   m_Children:
   - {fileID: 268133125}
   - {fileID: 2004979275}
-  - {fileID: 1910548577}
+  - {fileID: 1299198964}
   - {fileID: 1082862329}
   m_Father: {fileID: 159527816}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1877,17 +1892,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1910548576}
-  m_LocalRotation: {x: 0.006551017, y: -0, z: -0, w: 0.99997854}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4375, y: 2.1875, z: 0.12159483}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -9.003799}
+  m_LocalScale: {x: 0.21875, y: 0.21875, z: 0.21874985}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 1299198964}
-  m_Father: {fileID: 1431180378}
+  m_Children: []
+  m_Father: {fileID: 1299198964}
   m_LocalEulerAnglesHint: {x: 0.751, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -69.24341, y: 15.314087}
+  m_AnchoredPosition: {x: -301, y: 38.19675}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1910548578
@@ -2045,7 +2059,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5882353}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
