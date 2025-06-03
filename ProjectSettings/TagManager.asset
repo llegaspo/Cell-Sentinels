@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - WhiteBloodCell
+  - Pathogen
+  - Container
+  - Neutrophil
   layers:
   - Default
   - TransparentFX
@@ -42,17 +44,5 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: BackGround
-    uniqueID: 2283304925
-    locked: 0
-  - name: MiddleGround
-    uniqueID: 813738905
-    locked: 0
-  - name: ForeGround
-    uniqueID: 1286342069
-    locked: 0
   m_RenderingLayers:
   - Default
-  - Background
-  - Subject
-  - ForeGround
