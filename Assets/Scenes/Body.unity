@@ -305,7 +305,7 @@ SortingGroup:
   m_GameObject: {fileID: 262369628}
   m_Enabled: 1
   m_SortingLayerID: -2011662371
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &268133124
@@ -321,6 +321,7 @@ GameObject:
   - component: {fileID: 268133127}
   - component: {fileID: 268133126}
   - component: {fileID: 268133129}
+  - component: {fileID: 268133130}
   m_Layer: 5
   m_Name: Lymph Node
   m_TagString: Untagged
@@ -442,6 +443,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delaySeconds: 6
+--- !u!114 &268133130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268133124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede7d058ad93a544db361603a910337d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound: {fileID: 8300000, guid: 99b99ce5150f2d0498a0e50ac4007696, type: 3}
+  clickSound: {fileID: 8300000, guid: 101bf0caea5659d46b5a164efd9c1811, type: 3}
 --- !u!1 &448048965
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,7 +539,7 @@ SortingGroup:
   m_GameObject: {fileID: 448048965}
   m_Enabled: 1
   m_SortingLayerID: -2011662371
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &518475265
@@ -769,6 +784,135 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &634085784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 634085786}
+  - component: {fileID: 634085785}
+  m_Layer: 0
+  m_Name: bgmus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &634085785
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634085784}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 4f874d80d3f57564aba9d5d02fec39f5, type: 3}
+  m_Resource: {fileID: 8300000, guid: 4f874d80d3f57564aba9d5d02fec39f5, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &634085786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634085784}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 375.95743, y: 171.68542, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &720928931
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,7 +1041,7 @@ SortingGroup:
   m_GameObject: {fileID: 720928931}
   m_Enabled: 1
   m_SortingLayerID: -2011662371
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &723597706
@@ -1231,6 +1375,7 @@ GameObject:
   - component: {fileID: 1082862330}
   - component: {fileID: 1082862333}
   - component: {fileID: 1082862334}
+  - component: {fileID: 1082862335}
   m_Layer: 5
   m_Name: Spleen L
   m_TagString: Untagged
@@ -1366,6 +1511,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Spleen_Level_1
+--- !u!114 &1082862335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082862328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede7d058ad93a544db361603a910337d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound: {fileID: 8300000, guid: 99b99ce5150f2d0498a0e50ac4007696, type: 3}
+  clickSound: {fileID: 8300000, guid: 101bf0caea5659d46b5a164efd9c1811, type: 3}
 --- !u!1 &1299198963
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,6 +1539,7 @@ GameObject:
   - component: {fileID: 1299198965}
   - component: {fileID: 1299198968}
   - component: {fileID: 1299198969}
+  - component: {fileID: 1299198970}
   m_Layer: 5
   m_Name: Thymus L
   m_TagString: Untagged
@@ -1515,6 +1675,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Thymus_Level_1
+--- !u!114 &1299198970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299198963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede7d058ad93a544db361603a910337d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound: {fileID: 8300000, guid: 99b99ce5150f2d0498a0e50ac4007696, type: 3}
+  clickSound: {fileID: 8300000, guid: 101bf0caea5659d46b5a164efd9c1811, type: 3}
 --- !u!1 &1310039361
 GameObject:
   m_ObjectHideFlags: 0
@@ -2026,6 +2200,7 @@ GameObject:
   - component: {fileID: 2004979277}
   - component: {fileID: 2004979276}
   - component: {fileID: 2004979279}
+  - component: {fileID: 2004979280}
   m_Layer: 5
   m_Name: Lymph Vessel
   m_TagString: Untagged
@@ -2147,6 +2322,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delaySeconds: 6
+--- !u!114 &2004979280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004979274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede7d058ad93a544db361603a910337d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound: {fileID: 8300000, guid: 99b99ce5150f2d0498a0e50ac4007696, type: 3}
+  clickSound: {fileID: 8300000, guid: 101bf0caea5659d46b5a164efd9c1811, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2157,3 +2346,4 @@ SceneRoots:
   - {fileID: 720928933}
   - {fileID: 262369629}
   - {fileID: 1595145739}
+  - {fileID: 634085786}
