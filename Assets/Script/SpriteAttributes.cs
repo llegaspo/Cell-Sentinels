@@ -13,6 +13,10 @@ public class SpriteAttributes : MonoBehaviour
     [Header("Tag Settings")]
     public string enemyTag = "Enemy";    // e.g. "Pathogen" on the neutrophil; unused on the pathogen itself
 
+    [Header("Cytokinesis Storm Settings")]
+    [Tooltip("How much this cell adds to the Cytokinesis Storm bar when spawned.")]
+    public int cytokinesisValue = 5;
+
     private SpriteRenderer spriteRenderer;
     private Collider2D thisCollider;
 
