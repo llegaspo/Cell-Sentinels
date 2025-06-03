@@ -19,6 +19,7 @@ public class PathogenSpawn : MonoBehaviour
     {
         // Every 'spawnInterval' seconds, call SpawnPathogen(). 
         InvokeRepeating(nameof(SpawnPathogen), 0f, spawnInterval);
+        GameManager.Instance?.RegisterPathogen(gameObject);
     }
 
     void SpawnPathogen()

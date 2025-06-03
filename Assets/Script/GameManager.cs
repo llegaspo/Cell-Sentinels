@@ -6,41 +6,66 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [Header("Starting DNA (integer)")]
+    [Header("DNA Settings")]
     public int startingDNA = 30;
+
+    [Header("Battlefield Limits")]
+    public int maxCellsOnField = 10;
+
+    [Header("Cytokinesis Storm Settings")]
+    public int stormThreshold = 100;
 
     [Tooltip("Optional parent for spawned cells; leave null if you don’t need this.")]
     public Transform cellsParent;
 
-    // —— Internal State —— //
+    [Header("Result UI")]
+    public GameObject victoryPanel;
+    public GameObject defeatPanel;
+
+    public int startingDNAValue => startingDNA;
+    public int CurrentDNA { get; private set; }
+    public int CurrentStormValue { get; private set; } = 0;
+
     private GameObject selectedCellPrefab = null;
     private int selectedCellCost = 0;
 
-    private int currentDNA;
     private List<GameObject> activeCells = new List<GameObject>();
+    private List<GameObject> activePathogens = new List<GameObject>();
+    private bool levelFinished = false;
 
     private void Awake()
     {
-        // Singleton pattern
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
-        Instance = this;
 
-        // Initialize DNA
-        currentDNA = startingDNA;
-        Debug.Log($"[GameManager] Starting DNA: {currentDNA}");
+        Instance = this;
+        CurrentDNA = startingDNA;
+
+        Debug.Log($"[GameManager] Starting DNA: {CurrentDNA}");
+
+        // ✅ Ensure result panels are hidden on game start
+        if (victoryPanel != null) victoryPanel.SetActive(false);
+        if (defeatPanel != null) defeatPanel.SetActive(false);
     }
 
     private void Update()
     {
-        // If no cell type has been selected yet, do nothing
+        if (levelFinished)
+            return;
+
+        // ✅ Defeat: No DNA + No cells + Still pathogens
+        if (CurrentDNA <= 0 && activeCells.Count == 0 && activePathogens.Count > 0)
+        {
+            Debug.Log("[GameManager] No DNA and no cells left — Defeat triggered.");
+            TriggerDefeat();
+        }
+
         if (selectedCellPrefab == null)
             return;
 
-        // Every left‐mouse click attempts to spawn (as long as not over UI)
         if (Input.GetMouseButtonDown(0))
         {
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
@@ -53,66 +78,125 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Called by CellButton when its UI button is clicked.
-    /// Stores which prefab & cost to use (but does NOT clear after spawning).
-    /// </summary>
     public void SelectCellToSpawn(GameObject prefab, int cost)
     {
+        if (levelFinished)
+            return;
+
         selectedCellPrefab = prefab;
         selectedCellCost = cost;
-        Debug.Log($"[GameManager] Selected '{prefab.name}' for spawning. Cost each: {cost} DNA. Remaining DNA: {currentDNA}");
+        Debug.Log($"[GameManager] Selected '{prefab.name}' for spawning. Cost: {cost} DNA. Remaining: {CurrentDNA}");
     }
 
-    /// <summary>
-    /// Attempt to spawn the selected cell prefab at position (deducting DNA). 
-    /// Does not clear selectedCellPrefab, so you can keep spawning until DNA runs out.
-    /// </summary>
     private void TrySpawnSelectedCell(Vector2 position)
     {
         if (selectedCellPrefab == null)
-            return; // no selection
+            return;
 
-        if (currentDNA < selectedCellCost)
+        if (activeCells.Count >= maxCellsOnField)
         {
-            Debug.LogWarning($"[GameManager] Not enough DNA ({currentDNA}) to spawn '{selectedCellPrefab.name}' (cost {selectedCellCost}).");
+            Debug.LogWarning($"[GameManager] Max cells ({maxCellsOnField}) reached.");
             return;
         }
 
-        // Deduct DNA, update
-        currentDNA -= selectedCellCost;
-        Debug.Log($"[GameManager] Spawned '{selectedCellPrefab.name}' at {position}. DNA left: {currentDNA}");
+        if (CurrentDNA < selectedCellCost)
+        {
+            Debug.LogWarning($"[GameManager] Not enough DNA ({CurrentDNA}) to spawn '{selectedCellPrefab.name}'.");
+            return;
+        }
 
-        // Instantiate the cell
+        CurrentDNA -= selectedCellCost;
+
         GameObject newCell = Instantiate(selectedCellPrefab, position, Quaternion.identity);
-
         if (cellsParent != null)
             newCell.transform.SetParent(cellsParent);
 
         activeCells.Add(newCell);
 
-        // *** Do NOT clear selectedCellPrefab or selectedCellCost here ***
-        // That way, clicks keep spawning more until DNA is insufficient.
+        SpriteAttributes cellAttr = newCell.GetComponent<SpriteAttributes>();
+        int cytokinesisCost = (cellAttr != null) ? cellAttr.cytokinesisValue : 0;
+        CurrentStormValue += cytokinesisCost;
+
+        Debug.Log($"[GameManager] Storm increased by {cytokinesisCost}. Now: {CurrentStormValue}/{stormThreshold}");
+
+        OnStormValueChanged();
     }
 
-    /// <summary>
-    /// Called by SpriteAttributes when a cell GameObject dies.
-    /// </summary>
     public void OnCellDeath(GameObject cellGO)
     {
         if (activeCells.Contains(cellGO))
         {
             activeCells.Remove(cellGO);
-            Debug.Log($"[GameManager] A cell died. {activeCells.Count} cells still alive.");
+            Debug.Log($"[GameManager] A cell died. {activeCells.Count} remain.");
+
+            SpriteAttributes attr = cellGO.GetComponent<SpriteAttributes>();
+            if (attr != null)
+            {
+                CurrentStormValue -= attr.cytokinesisValue;
+                CurrentStormValue = Mathf.Max(0, CurrentStormValue);
+
+                Debug.Log($"[GameManager] Storm reduced by {attr.cytokinesisValue}. Now: {CurrentStormValue}/{stormThreshold}");
+
+                OnStormValueChanged();
+            }
         }
     }
-    public int GetCurrentDNA()
-{
-    return currentDNA;
-}public void AddDNA(int amount)
-{
-    currentDNA = Mathf.Clamp(currentDNA + amount, 0, startingDNA);
-}
 
+    public void RegisterPathogen(GameObject pathogenGO)
+    {
+        if (!activePathogens.Contains(pathogenGO))
+            activePathogens.Add(pathogenGO);
+    }
 
+    public void OnPathogenDeath(GameObject pathogenGO)
+    {
+        if (activePathogens.Contains(pathogenGO))
+        {
+            activePathogens.Remove(pathogenGO);
+            Debug.Log($"[GameManager] A pathogen died. {activePathogens.Count} left.");
+
+            if (activePathogens.Count == 0)
+            {
+                TriggerVictory();
+            }
+        }
+    }
+
+    private void OnStormValueChanged()
+    {
+        CytokinesisBar.Instance?.RefreshBar();
+
+        // ✅ Properly trigger defeat when threshold is hit
+        if (CurrentStormValue >= stormThreshold && !levelFinished)
+        {
+            Debug.Log("[GameManager] Storm threshold reached!");
+            TriggerDefeat();
+        }
+    }
+
+    private void TriggerVictory()
+    {
+        if (levelFinished) return;
+        levelFinished = true;
+
+        Debug.Log("[GameManager] VICTORY!");
+        if (victoryPanel != null) victoryPanel.SetActive(true);
+    }
+
+    private void TriggerDefeat()
+    {
+        if (levelFinished) return;
+        levelFinished = true;
+
+        Debug.Log("[GameManager] DEFEAT!");
+        if (defeatPanel != null) defeatPanel.SetActive(true);
+    }
+
+    public float GetStormNormalized()
+    {
+        if (stormThreshold <= 0) return 0f;
+        return Mathf.Clamp01((float)CurrentStormValue / stormThreshold);
+    }
+
+    public int GetCurrentDNA() => CurrentDNA;
 }
