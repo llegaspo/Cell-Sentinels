@@ -55,29 +55,32 @@ public class SpriteAttributes : MonoBehaviour
     }
 
     void Die()
+{
+    if (gameObject.CompareTag("Neutrophil") && GameManager.Instance != null)
     {
-        // If this object is tagged "Cell", notify GameManager that a cell has died.
-        if (gameObject.CompareTag("Neutrophil") && GameManager.Instance != null)
-        {
-            GameManager.Instance.OnCellDeath(gameObject);
-        }
-
-        // Immediately disable our own Collider so nobody stays "stuck" overlapping us.
-        if (thisCollider != null)
-        {
-            thisCollider.enabled = false;
-        }
-
-        // Fade out and destroy afterward
-        if (spriteRenderer != null)
-        {
-            StartCoroutine(FadeOutAndDestroy());
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        GameManager.Instance.OnCellDeath(gameObject);
     }
+
+    if (gameObject.CompareTag("Pathogen") && GameManager.Instance != null)
+    {
+        GameManager.Instance.OnPathogenDeath(gameObject);
+    }
+
+    if (thisCollider != null)
+    {
+        thisCollider.enabled = false;
+    }
+
+    if (spriteRenderer != null)
+    {
+        StartCoroutine(FadeOutAndDestroy());
+    }
+    else
+    {
+        Destroy(gameObject);
+    }
+}
+
 
     System.Collections.IEnumerator FadeOutAndDestroy()
     {
